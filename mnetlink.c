@@ -53,22 +53,22 @@ int mnlk_send( void *buf, int len)
 
 int mnlk_init(void)
 {
-	//2.6...
-	nl_sk = netlink_kernel_create(&init_net, MNETLINK_PROTO, 1,
-			mnlk_rcv, NULL, THIS_MODULE);
-	//3.1...		
-	/*struct netlink_kernel_cfg cfg = {  
-        .input = mnlk_rcv,  
-    };
-  
-    nl_sk = netlink_kernel_create(&init_net, MNETLINK_PROTO, &cfg);  
- 	*/
+
+	#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,14)
+	  	struct netlink_kernel_cfg cfg = {  
+	        .input = mnlk_rcv,  
+	    };
+	    nl_sk = netlink_kernel_create(&init_net, MNETLINK_PROTO, &cfg);  
+	#else
+	   	nl_sk = netlink_kernel_create(&init_net, MNETLINK_PROTO, 1,
+				mnlk_rcv, NULL, THIS_MODULE);
+	#endif
+	
 	if (NULL == nl_sk) 
 	{
 		printk("netlink_kernel_create error\n");
 		return - 1;
 	}
-	
 	return 0;
 }
 

@@ -41,7 +41,7 @@
 #include <net/tcp.h>
 #include <net/udp.h>
 #include <net/icmp.h>
-
+#include <linux/version.h>
 
 #include "capture.h"
 #include "mstring.h"
