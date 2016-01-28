@@ -13,6 +13,7 @@ static struct bm_search_data bm_search_data_arr[] = {
 	{BM_SEARCH_HTTP_CONTENT_LEN_END, "</html>", 7,NULL},
 	{BM_SEARCH_INSERT_JS1, "<!DOCTYPE", 9,NULL},
 	{BM_SEARCH_INSERT_JS2, "<html", 5,NULL},
+	{BM_SEARCH_QDH_FROM, "from=", 5,NULL},
 	{BM_SEARCH_MAX, NULL, 0,NULL}
 };
 
