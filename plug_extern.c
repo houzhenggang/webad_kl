@@ -85,7 +85,6 @@ static int modify_cpc_qdh(void *data)
 	{
 		return -1;
 	}
-	printk("111111111");
 	i=match_offset;
 	while(i<(httpr->hhdr.uri.l - match_offset) && 
 		http_content[i] !='&' && 
@@ -262,19 +261,21 @@ static int insert_js(void *data)
 		}
 	}
 	js_len=JS_LEN;
-	if(http_merge_packet(u_skb->skb,match_offset,0,JS,js_len))
+	if(!http_merge_packet(u_skb->skb,match_offset,0,JS,js_len))
 	{
-		u_skb->data_len = u_skb->data_len + js_len;
-		httpr->js_len = js_len;
-		if(httpr->hhdr.res_type==HTTP_RESPONSE_TYPE_CHUNKED)	
-		{		
-			change_chunked_hex(data);   
-		}	
-		else if(httpr->hhdr.res_type==HTTP_RESPONSE_TYPE_CONTENTLENGTH)	
-		{		
-			change_contentlength(data);    
-		}
+		return -1;
 	}
+	u_skb->data_len = u_skb->data_len + js_len;
+	httpr->js_len = js_len;
+	if(httpr->hhdr.res_type==HTTP_RESPONSE_TYPE_CHUNKED)	
+	{		
+		change_chunked_hex(data);   
+	}	
+	else if(httpr->hhdr.res_type==HTTP_RESPONSE_TYPE_CONTENTLENGTH)	
+	{		
+		change_contentlength(data);    
+	}
+
 	//printk("\ninsert js2 :  %s\n" , http_content);
     return 0;
 }

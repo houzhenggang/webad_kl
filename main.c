@@ -155,7 +155,7 @@ static int __init app_init(void)
 		printk("plug_init failed\n");
 	}
 	
-	if(-1==capture_init() < 0)
+	if(-1==capture_init())
 	{
 		printk("capture_init failed\n");
 	}
