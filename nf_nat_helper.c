@@ -121,6 +121,8 @@ int http_repair_packet(struct sk_buff *skb , int seqoff)
 	
 	struct iphdr *iph;
 	struct tcphdr *tcph;
+	unsigned long new_seq;
+	
 	if (!skb_make_writable(skb, skb->len))
 	{	
 		printk("can't skb_make_writable\n");
@@ -128,6 +130,9 @@ int http_repair_packet(struct sk_buff *skb , int seqoff)
 	}
 	iph = ip_hdr(skb);
 	tcph = (void *)iph + iph->ihl*4;
+	new_seq = htonl(ntohl(tcph->seq) + seqoff);
+	
+	inet_proto_csum_replace2(&tcph->check, skb, tcph->seq, new_seq, 1);
 	tcph->seq=htonl(ntohl(tcph->seq) + seqoff);
 	return 1;
 }
