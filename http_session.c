@@ -300,7 +300,7 @@ int decode_http(struct http_hdr* hhdr, struct user_skb* u_skb)
 }
 
 
-void http_timeout()
+void http_timeout(void)
 {
 	struct http_request *cursor , *tmp;
 	long current_sec;
@@ -324,8 +324,7 @@ void http_timeout()
 void process_http(void *data)
 {
 	struct user_skb* u_skb = (struct user_skb*)data;
-	struct http_request* new_httpr;
-	struct http_request tmp_httpr;
+	struct http_request* new_httpr=NULL;
 
 	http_timeout();
 	
@@ -432,7 +431,7 @@ void process_http(void *data)
 		return;
 }
 
-int http_session_init()
+int http_session_init(void)
 {
 	INIT_LIST_HEAD(&http_session_list_head);
 	
@@ -445,7 +444,7 @@ int http_session_init()
 	return 0;
 }
 
-void http_session_fini()
+void http_session_fini(void)
 {
 	struct http_request* tmp;
 	list_for_each_entry_rcu(tmp, &http_session_list_head, list) 		

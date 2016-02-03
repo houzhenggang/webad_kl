@@ -14,7 +14,7 @@ void new_plug(int (*plug_hook)(void *) , int plug_type_num);
 
 int plug_hook(void *data , int plug_type_num);
 
-int plug_init();
-void plug_fini();
+int plug_init(void);
+void plug_fini(void);
 
 #endif 

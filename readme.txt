@@ -1,20 +1,21 @@
-ÒÀÀµ
+ä¾èµ–
 netfilter
 
-×¢Òâ
-Èç¹ûÄÚºË²»Ö§³Önetfilter
-	Ö´ĞĞmake memuconfig£¬¿ªÆônetfilterÑ¡Ïî
+æ³¨æ„
+å¦‚æœå†…æ ¸ä¸æ”¯æŒnetfilter
+	æ‰§è¡Œmake memuconfigï¼Œå¼€å¯netfilteré€‰é¡¹
 	Networking-->Networking Options-->Network Packet Filtering Framework-->
-	Core Netfilter Configuration(ºËĞÄNetfilterÅäÖÃ)ºÍIP£ºNetfilter Configuration £¨IP£ºNetfilterÅäÖÃ£©
+	Core Netfilter Configuration(æ ¸å¿ƒNetfilteré…ç½®)å’ŒIPï¼šNetfilter Configuration ï¼ˆIPï¼šNetfilteré…ç½®ï¼‰
 
-ÒÆÖ²
-1¡¢½«´úÂë·ÅÖÃµ½kernel-3.10/drivers/webad
-2¡¢Ìí¼Óobj-$(CONFIG_WEBAD) += webad.oºÍ
-	webad-y := main.o capture.o mnetlink.o mstring.o http_session.o plug.o plug_extern.o µ½
+ç§»æ¤
+1ã€å°†ä»£ç æ”¾ç½®åˆ°kernel-3.10/drivers/webad
+2ã€æ·»åŠ obj-$(CONFIG_WEBAD) += webad.oå’Œ
+	webad-y := main.o capture.o mnetlink.o mstring.o http_session.o plug.o 
+	plug_extern.o nf_nat_helper.o åˆ°
 	kernel-3.10/drivers/webad/Makefile
-3¡¢Ìí¼Óobj-$(CONFIG_WEBAD)		+= webad/ µ½ ../kernel-3.10/drivers/Makefile
-4¡¢Ìí¼Ósource "drivers/webad/Kconfig" µ½ ../kernel-3.10/drivers/Kconfig
+3ã€æ·»åŠ obj-$(CONFIG_WEBAD)		+= webad/ åˆ° ../kernel-3.10/drivers/Makefile
+4ã€æ·»åŠ source "drivers/webad/Kconfig" åˆ° ../kernel-3.10/drivers/Kconfig
 
-±àÒë°²×°
-1¡¢ÔÚandroid¸ùÄ¿Â¼Ö´ĞĞmakeÃüÁî
-2¡¢½«±àÒë³öÀ´µÄÎÄ¼ş½øĞĞË¢»ú
+ç¼–è¯‘å®‰è£…
+1ã€åœ¨androidæ ¹ç›®å½•æ‰§è¡Œmakeå‘½ä»¤
+2ã€å°†ç¼–è¯‘å‡ºæ¥çš„æ–‡ä»¶è¿›è¡Œåˆ·æœº

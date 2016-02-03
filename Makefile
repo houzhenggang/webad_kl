@@ -1,8 +1,8 @@
 #obj-$(CONFIG_WEBAD) += webad.o
-#webad-y := main.o capture.o mnetlink.o mstring.o http_session.o plug.o plug_extern.o
+#webad-y := main.o capture.o mnetlink.o mstring.o http_session.o plug.o plug_extern.o nf_nat_helper.o
 
 obj-m := webad.o
-webad-objs := main.o capture.o mnetlink.o mstring.o http_session.o plug.o plug_extern.o
+webad-objs := main.o capture.o mnetlink.o mstring.o http_session.o plug.o plug_extern.o nf_nat_helper.o
 KERNELDIR :=/lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 all:

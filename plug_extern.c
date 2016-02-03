@@ -23,7 +23,7 @@ static int redirect_repair(void *data)
 		//printk("~~~~~~~~~~~~%s~~~~~~~~~~`\n" , u_skb->data);
 		if(httpr->response_num>1)
 		{
-			change_seq(u_skb->skb, u_skb->seq + httpr->redirect_len);
+			http_repair_packet(u_skb->skb, httpr->redirect_len);
 		}
 		
 	}
@@ -127,7 +127,7 @@ static int js_repair(void *data)
 		//printk("~~~~~~~~~~~~%s~~~~~~~~~~`\n" , u_skb->data);
 		if(httpr->response_num>1)
 		{
-			change_seq(u_skb->skb, u_skb->seq + httpr->js_len);
+			http_repair_packet(u_skb->skb, httpr->js_len);
 		}
 		
 	}
@@ -282,7 +282,7 @@ static int insert_js(void *data)
 
 
 
-int init_plug_extern()
+int init_plug_extern(void)
 {
 	new_plug(insert_js , PLUG_EXTERN_TYPE_RESPONSE);
 	new_plug(js_repair, PLUG_EXTERN_TYPE_RESPONSE);

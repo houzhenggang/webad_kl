@@ -28,7 +28,6 @@
 #include <linux/netdevice.h>
 
 #include <net/netfilter/nf_log.h>
-#include <net/netfilter/nf_nat_helper.h>
 #include <net/net_namespace.h>
 #include <net/sock.h>
 #include <net/netlink.h>
@@ -131,6 +130,7 @@ int http_merge_packet(struct sk_buff *skb,
 			       const char *rep_buffer,
 			       unsigned int rep_len);
 
-void change_seq(struct sk_buff *skb , unsigned long last_seq);
+int http_repair_packet(struct sk_buff *skb , int seqoff);
+
 
 #endif

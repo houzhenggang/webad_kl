@@ -41,7 +41,7 @@ int plug_hook(void *data , int plug_type_num)
 	return 0;
 }
 
-int plug_init()
+int plug_init(void)
 {
 
 	int i;
@@ -55,7 +55,7 @@ int plug_init()
 	return 0;
 }
 
-void plug_fini()
+void plug_fini(void)
 {
 	struct plug_info  *tmp;
 	int i;	
