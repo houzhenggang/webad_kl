@@ -126,7 +126,7 @@ int http_repair_packet(struct sk_buff *skb , int seqoff)
 	if (!skb_make_writable(skb, skb->len))
 	{	
 		printk("can't skb_make_writable\n");
-		return;
+		return 0;
 	}
 	iph = ip_hdr(skb);
 	tcph = (void *)iph + iph->ihl*4;
