@@ -11,7 +11,6 @@
 #include <linux/if_packet.h>
 #include <linux/in.h>
 #include <linux/ctype.h>
-#include <linux/decompress/mm.h>
 #include <linux/delay.h>
 #include <linux/cdev.h>
 #include <linux/slab.h>

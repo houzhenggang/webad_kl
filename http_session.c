@@ -135,22 +135,27 @@ int is_html_end(struct http_request* httpr)
 	int http_content_len = httpr->curr_skb->data_len;
 	
 	char* search_data ;
-
+	int search_len;
+	
 	if(httpr->response_num == 1)
 		return 0;
+
+	search_len=http_content_len;
 	
 	if(httpr->hhdr.res_type==HTTP_RESPONSE_TYPE_CHUNKED)
 	{
+		
 	 	if(http_content_len<8)
 		{
 			search_data = http_content;
 		}
 		else
 		{
-			search_data = http_content+(http_content_len - 8);
+			search_len=8;
+			search_data = http_content+(http_content_len - search_len);
 		}
 		
-		if(bm_search(BM_SEARCH_HTTP_CHUNKED_END ,search_data, 8)>=0)
+		if(bm_search(BM_SEARCH_HTTP_CHUNKED_END ,search_data, search_len)>=0)
 		{
 			return 1;
 		}
@@ -172,10 +177,11 @@ int is_html_end(struct http_request* httpr)
 		}
 		else
 		{
-			search_data = http_content+(http_content_len - 64);
+			search_len=64;
+			search_data = http_content+(http_content_len - search_len);
 		}
 		
-		if(bm_search(BM_SEARCH_HTTP_CONTENT_LEN_END ,search_data, 64)>=0)
+		if(bm_search(BM_SEARCH_HTTP_CONTENT_LEN_END ,search_data, search_len)>=0)
 		{
 			return 1;
 		}
