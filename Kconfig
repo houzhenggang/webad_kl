@@ -1,5 +1,0 @@
-config WEBAD
-	tristate "The Webad"
-	default n
-	help
-	this is a andriod driver.
